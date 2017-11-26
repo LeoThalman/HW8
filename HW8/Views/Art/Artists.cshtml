@@ -1,0 +1,30 @@
+﻿<h2>Artists</h2>
+
+<table>
+        <tr>
+            <th>
+                Artists Name
+            </th>
+            <th>
+                Birth Date
+            </th>
+            <th>
+                Birth City
+            </th>
+        </tr>
+    @foreach (var artist in Model.Artists)
+    {
+        <tr>
+            <td>
+                @artist.Name
+            </td>
+            <td>
+                @artist.BirthCity
+            </td>
+            <td>
+                @artist.BirthCity
+            </td>
+        </tr>
+    }
+</table>
+

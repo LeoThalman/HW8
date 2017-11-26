@@ -1,0 +1,23 @@
+﻿<h2>Classifications</h2>
+
+<table>
+    <tr>
+        <th>
+            Title Of Art
+        </th>
+        <th>
+            Genre
+        </th>
+    </tr>
+    @foreach (var art in Model.Classifications)
+    {
+        <tr>
+            <td>
+                @art.ArtWork
+            </td>
+            <td>
+                @art.Genre
+            </td>
+        </tr>
+    }
+</table>

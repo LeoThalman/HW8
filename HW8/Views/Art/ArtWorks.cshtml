@@ -1,0 +1,23 @@
+﻿<h2>ArtWorks</h2>
+
+<table>
+    <tr>
+        <th>
+            Title Of Art
+        </th>
+        <th>
+            Artist Name
+        </th>
+    </tr>
+    @foreach (var art in Model.ArtWorks)
+    {
+        <tr>
+            <td>
+                @art.Title
+            </td>
+            <td>
+                @art.Artist
+            </td>
+        </tr>
+    }
+</table>
