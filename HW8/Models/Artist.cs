@@ -22,13 +22,18 @@ namespace HW8.Models
         [StringLength(50)]
         public string Name { get; set; }
 
+        [Required]
         [Column(TypeName = "date")]
-        public DateTime? BirthDate { get; set; }
+        [DateCorrectRange(ValidateBirthDate = true, ErrorMessage = "Birth date can't be in the future")]
+        public DateTime BirthDate { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string BirthCity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ArtWork> ArtWorks { get; set; }
     }
+
+
 }

@@ -2,8 +2,8 @@
 (
 	ID			INT IDENTITY (1,1) NOT NULL,
 	Name		NVARCHAR(50) NOT NULL,
-	BirthDate	Date,
-	BirthCity	NVARCHAR(100)
+	BirthDate	Date NOT NULL,
+	BirthCity	NVARCHAR(100) NOT NULL,
 	CONSTRAINT [PK_dbo.Artist] PRIMARY KEY CLUSTERED (Name)
 );
 

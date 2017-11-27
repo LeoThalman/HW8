@@ -1,5 +1,5 @@
 ﻿<h2>Artists</h2>
-
+@Html.ActionLink("Add an Artist", "CreateArtist")
 <table>
         <tr>
             <th>
@@ -19,10 +19,19 @@
                 @artist.Name
             </td>
             <td>
-                @artist.BirthCity
+                @artist.BirthDate
             </td>
             <td>
                 @artist.BirthCity
+            </td>
+            <td>
+                @Html.ActionLink("Details", "ArtistDetails", new { ID = artist.ID}, null)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditArtist", new { ID = artist.ID }, null)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteArtist", new { ArtistName = artist.Name }, null)
             </td>
         </tr>
     }

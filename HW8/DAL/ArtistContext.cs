@@ -1,14 +1,14 @@
+namespace HW8.DAL { 
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using HW8.Models;
 
-namespace HW8.DAL
-{
     public partial class ArtistContext : DbContext
     {
-        public ArtistContext() : base("name=ArtistDBContext")
+        public ArtistContext()
+            : base("name=ArtistContext")
         {
         }
 
