@@ -1,4 +1,5 @@
-namespace HW8.DAL { 
+namespace HW8.DAL
+{
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -19,20 +20,6 @@ namespace HW8.DAL {
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Artist>()
-                .HasMany(e => e.ArtWorks)
-                .WithRequired(e => e.Artist1)
-                .HasForeignKey(e => e.Artist);
-
-            modelBuilder.Entity<ArtWork>()
-                .HasMany(e => e.Classifications)
-                .WithRequired(e => e.ArtWork1)
-                .HasForeignKey(e => e.ArtWork);
-
-            modelBuilder.Entity<Genre>()
-                .HasMany(e => e.Classifications)
-                .WithRequired(e => e.Genre1)
-                .HasForeignKey(e => e.Genre);
         }
     }
 }

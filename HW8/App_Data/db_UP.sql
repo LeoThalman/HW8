@@ -1,18 +1,18 @@
 ﻿CREATE TABLE dbo.Artist
 (
 	ID			INT IDENTITY (1,1) NOT NULL,
-	Name		NVARCHAR(50) NOT NULL,
+	Name		NVARCHAR(50) NOT NULL UNIQUE,
 	BirthDate	Date NOT NULL,
 	BirthCity	NVARCHAR(100) NOT NULL,
-	CONSTRAINT [PK_dbo.Artist] PRIMARY KEY CLUSTERED (Name)
+	CONSTRAINT [PK_dbo.Artist] PRIMARY KEY CLUSTERED (ID ASC)
 );
 
 CREATE TABLE dbo.ArtWork
 (
 	ID			INT IDENTITY (1,1) NOT NULL,
-	Title		NVARCHAR(100) NOT NULL,
+	Title		NVARCHAR(100) NOT NULL UNIQUE,
 	Artist		NVARCHAR(50) NOT NULL,
-	CONSTRAINT [PK_dbo.ArtWork] PRIMARY KEY CLUSTERED (Title),
+	CONSTRAINT [PK_dbo.ArtWork] PRIMARY KEY CLUSTERED (ID ASC),
 	CONSTRAINT [FK_dbo.Artist] FOREIGN KEY (Artist)
 		REFERENCES dbo.Artist (Name)
 		ON DELETE CASCADE
@@ -22,8 +22,8 @@ CREATE TABLE dbo.ArtWork
 CREATE TABLE dbo.Genre
 (
 	ID			INT IDENTITY (1,1) NOT NULL,
-	Name		NVARCHAR(50) NOT NULL,
-	CONSTRAINT [PK_dbo.Genre] PRIMARY KEY CLUSTERED (Name)
+	Name		NVARCHAR(50) NOT NULL UNIQUE,
+	CONSTRAINT [PK_dbo.Genre] PRIMARY KEY CLUSTERED (ID ASC)
 );
 
 CREATE TABLE dbo.Classification
@@ -46,6 +46,7 @@ INSERT INTO dbo.Artist (Name, BirthDate, BirthCity) VALUES
 			('Leonardo Da Vinci', '15190502' ,'Vinci, Italy'),
 			('Hatip Mehmed Efendi','16801118','Unknown'),
 			('Salvador Dali','19040511','Figueres, Spain');
+
 INSERT INTO dbo.ArtWork (Title, Artist) VALUES
 			('Circle Limit III', 'M.C. Escher'),
 			('Twon Tree', 'M.C. Escher'),

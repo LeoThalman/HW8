@@ -1,3 +1,13 @@
-﻿
-<h2>Index</h2>
+﻿@using HW8.Models.ViewModel
+@model ArtViewModel
+
+<h2>Art Home Page</h2>
+<form>
+    <label for="genre">Genre</label>
+    @foreach( var genre  in Model.ArtGenres)
+    {
+        <input class="genre" type="button" name="genre" value="@genre.Name" />
+    }
+</form>
+<table class="artTable"></table>
 

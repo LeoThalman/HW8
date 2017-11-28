@@ -9,6 +9,7 @@ namespace HW8.Models.ViewModel
 {
     public class ArtViewModel
     {
+        public IEnumerable<Genre> ArtGenres { get; set; }
         public IEnumerable<ArtWork> Paintings { get; set; }
         public IEnumerable<Classification> Genres { get; set; }
         public Artist AnArtist { get; set; }

@@ -54,6 +54,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -108,6 +111,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\application.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -125,10 +129,11 @@
     </Compile>
     <Compile Include="Models\Artist.cs" />
     <Compile Include="DAL\ArtistContext.cs" />
+    <Compile Include="Models\ArtTable.cs" />
     <Compile Include="Models\ArtWork.cs" />
     <Compile Include="Models\Classification.cs" />
-    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\DateCorrectRange.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\ViewModel\ArtViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

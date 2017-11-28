@@ -9,6 +9,7 @@ using HW8.Models.ViewModel;
 using System.Diagnostics;
 using System.Net;
 using System.Data.Entity;
+using Newtonsoft.Json;
 
 namespace HW8.Controllers
 {
@@ -22,7 +23,12 @@ namespace HW8.Controllers
         // GET: Art
         public ActionResult Index()
         {
-            LoadTables(); 
+            LoadTables();
+            VM.ArtGenres = VM.Db.Genres.ToList();
+            foreach(var temp in VM.ArtGenres)
+            {
+                Debug.WriteLine(temp);
+            }
             return View(VM);
         }
 
@@ -110,7 +116,7 @@ namespace HW8.Controllers
             LoadTables();
             VM.AnArtist = VM.Db.Artists.Where(a => a.ID == ID).FirstOrDefault();
             VM.Paintings = VM.Db.ArtWorks.Where(a => a.Artist == VM.AnArtist.Name);
-            VM.Genres = VM.Db.Classifications.Where(a => a.ArtWork1.Artist == VM.AnArtist.Name); 
+
             return View(VM);
         }
 
@@ -141,11 +147,16 @@ namespace HW8.Controllers
             return View(VM);
         }
 
-        public ActionResult DeleteArtist(string ArtistName)
+        /// <summary>
+        /// delete an artist from the database
+        /// </summary>
+        /// <param name="ID">ID of artist to be deleted</param>
+        /// <returns>the artists view page</returns>
+        public ActionResult DeleteArtist(int ID)
         {
             LoadTables();
             try { 
-            VM.AnArtist = VM.Db.Artists.Where(a => a.Name == ArtistName).FirstOrDefault();
+            VM.AnArtist = VM.Db.Artists.Where(a => a.ID == ID).FirstOrDefault();
             VM.Db.Artists.Remove(VM.AnArtist);
             VM.Db.SaveChanges();
             }
@@ -156,6 +167,29 @@ namespace HW8.Controllers
 
             }
             return RedirectToAction("Artists");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="genre"></param>
+        /// <returns></returns>
+        public JsonResult Search(string genre)
+        {
+            List<String> temp = VM.Db.Classifications.Where(g => g.Genre == genre).Select(g => g.ArtWork).ToList();
+            List<ArtTable> tempart = new List<ArtTable>();
+            ArtWork t;
+            ArtTable aTemp;
+            foreach (String art in temp)
+            {
+                aTemp = new ArtTable();
+                t = VM.Db.ArtWorks.Where(a => a.Title == art).FirstOrDefault();
+                aTemp.Artist = t.Artist;
+                aTemp.Title = t.Title;
+                tempart.Add(aTemp);
+            }
+            string rjson = JsonConvert.SerializeObject(tempart, Formatting.Indented);
+            return Json(rjson, JsonRequestBehavior.AllowGet);
         }
     }
 }
