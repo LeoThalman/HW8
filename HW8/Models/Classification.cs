@@ -18,5 +18,9 @@ namespace HW8.Models
         [Required]
         [StringLength(50)]
         public string Genre { get; set; }
+
+        public virtual ArtWork ArtWork1 { get; set; }
+
+        public virtual Genre Genre1 { get; set; }
     }
 }

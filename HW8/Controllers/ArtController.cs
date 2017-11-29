@@ -116,7 +116,7 @@ namespace HW8.Controllers
             LoadTables();
             VM.AnArtist = VM.Db.Artists.Where(a => a.ID == ID).FirstOrDefault();
             VM.Paintings = VM.Db.ArtWorks.Where(a => a.Artist == VM.AnArtist.Name);
-
+            VM.Genres = VM.Db.Classifications.Where(a => a.ArtWork1.Artist == VM.AnArtist.Name);
             return View(VM);
         }
 
