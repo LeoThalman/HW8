@@ -20,7 +20,11 @@ namespace HW8.Controllers
             Db = new ArtistContext()
         };
 
-        // GET: Art
+        /// <summary>
+        /// returns the homepage, which has buttons on it allowing the user to load all
+        /// artwork of a specific genre
+        /// </summary>
+        /// <returns>The home page</returns>
         public ActionResult Index()
         {
             LoadTables();
@@ -32,6 +36,9 @@ namespace HW8.Controllers
             return View(VM);
         }
 
+        /// <summary>
+        /// loads in the information for the tables from the database
+        /// </summary>
         private void LoadTables()
         {
             VM.Artists = VM.Db.Artists;
@@ -106,11 +113,10 @@ namespace HW8.Controllers
 
 
         /// <summary>
-        /// Details for artists that pulls all artworks, and genres of those artworks,
-        /// and displays them
+        /// Details for artists
         /// </summary>
-        /// <param name="ID"></param>
-        /// <returns></returns>
+        /// <param name="ID"> ID of Artist</param>
+        /// <returns>A View displaying the Artist Details</returns>
         public ActionResult ArtistDetails(int ID)
         {
             LoadTables();
@@ -120,6 +126,12 @@ namespace HW8.Controllers
             return View(VM);
         }
 
+        /// <summary>
+        /// Allows user to edit artist details, takes the artist ID from the user and then allows them
+        /// to edit that artist's information, all fields must be filed
+        /// </summary>
+        /// <param name="ID">ID of the artist in the table</param>
+        /// <returns>A view that has input fields to edit table information</returns>
         public ActionResult EditArtist(int? ID)
         {
             LoadTables();
@@ -132,6 +144,13 @@ namespace HW8.Controllers
             return View(VM);
         }
 
+        /// <summary>
+        /// Takes the information from the view and makes sure it's all filled out.
+        /// If it is then edits that artist in the table, otherwise sends user back to the edit
+        /// view and requests that all information be filled out
+        /// </summary>
+        /// <param name="AnArtist">The information to be edited on the table</param>
+        /// <returns>Goes back to artists if correct, otherwise back to edit view</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditArtist([Bind(Include = "Name,BirthDate,BirthCity")] Artist AnArtist)
@@ -170,10 +189,11 @@ namespace HW8.Controllers
         }
 
         /// <summary>
-        /// 
+        /// takes an genre from the view and searches for all artwork of that genre,
+        /// then returns a json object of both artwork and artist.
         /// </summary>
-        /// <param name="genre"></param>
-        /// <returns></returns>
+        /// <param name="genre">genre to look up and return</param>
+        /// <returns>all artwork of specified genre</returns>
         public JsonResult Search(string genre)
         {
             List<String> temp = VM.Db.Classifications.Where(g => g.Genre == genre).Select(g => g.ArtWork).ToList();

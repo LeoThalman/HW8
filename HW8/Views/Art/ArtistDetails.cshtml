@@ -5,21 +5,10 @@
 <h2>@Model.AnArtist.Name </h2>
 
 
-@foreach (var painting in Model.Paintings)
-{
-    <h4>Title of Art: @painting.Title</h4>
-
-    <h5>
-        Genre(s)
-    </h5>
-    <ul>
-        @foreach (var genre in Model.Genres)
-        {
-            if(genre.ArtWork == painting.Title){
-                <li>
-                    @genre.Genre
-                </li>
-            }
-        }
-    </ul>
-}
+<h4>Artwork</h4>
+<ul>
+    @foreach (var painting in Model.Paintings)
+    {
+        <li>@painting.Title</li>
+    }
+</ul>

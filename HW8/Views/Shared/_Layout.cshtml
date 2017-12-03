@@ -22,13 +22,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        @Html.ActionLink("Artists", "Artists", "Art", null);
+                        @Html.ActionLink("Artists", "Artists");
                     </li>
                     <li>
-                        @Html.ActionLink("Art Works", "ArtWorks", "Art", null);
+                        @Html.ActionLink("Art Works", "ArtWorks");
                     </li>
                     <li>
-                        @Html.ActionLink("Classifications", "Classifications", "Art", null);
+                        @Html.ActionLink("Classifications", "Classifications");
                     </li>
                 </ul>
             </div>
@@ -39,7 +39,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Artists</p>
         </footer>
     </div>
 
